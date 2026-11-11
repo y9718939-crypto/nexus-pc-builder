@@ -1,0 +1,361 @@
+/* ===========================================================
+   BUILDER.CSS
+   Styles that only apply to builder.html: the page header, the
+   two-column layout (component list + sticky summary panel),
+   each component row, and the summary panel's own pieces.
+=========================================================== */
+
+.builder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) 0 var(--space-3);
+  flex-wrap: wrap;
+}
+
+.builder-header h1 {
+  font-size: 27px;
+  margin-bottom: 6px;
+}
+
+.builder-header p {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* Main grid: component list on the left, summary panel on the right */
+.builder-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-3);
+  align-items: start;
+  padding-bottom: var(--space-8);
+}
+
+.component-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.component-row {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* A dashed border signals "nothing picked yet" at a glance */
+.component-row--empty {
+  border-style: dashed;
+  border-color: var(--color-border-dashed);
+}
+
+.component-row__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--color-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.component-row--selected .component-row__icon {
+  color: var(--color-text);
+}
+
+.component-row--empty .component-row__icon {
+  color: var(--color-text-muted);
+}
+
+.component-row__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.component-row__label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: 3px;
+}
+
+.component-row__name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.component-row__empty-text {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.component-row__price {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* --- Summary panel --- */
+.summary-panel {
+  position: sticky;
+  top: 96px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  /* If the panel gets taller than the screen (many compatibility notes),
+     it scrolls inside itself so the buttons at the bottom stay reachable */
+  max-height: calc(100vh - 112px);
+  max-height: calc(100dvh - 112px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.summary-panel__title {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.summary-panel__count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.summary-divider {
+  height: 1px;
+  background: var(--color-border);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.summary-row span:first-child {
+  color: var(--color-text-muted);
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.summary-total__label {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.summary-total__value {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.summary-missing {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.summary-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.summary-actions .btn {
+  flex: 1;
+  padding: 13px;
+  font-size: 13px;
+  min-height: 44px; /* comfortable tap target */
+}
+
+/* --- Added with the selection system --- */
+
+.component-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.component-row__specs {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.component-row__actions {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+/* Lets the "jump to summary" link land below the sticky navbar */
+.summary-panel {
+  scroll-margin-top: 88px;
+}
+
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-empty {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.summary-price-note {
+  font-size: 12px;
+  color: var(--color-warning);
+}
+
+.summary-status {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  min-height: 1.4em;
+}
+
+/* Compact total bar pinned to the bottom of the screen on tablets and
+   phones. Hidden on desktop (responsive.css turns it on). */
+.mobile-total-bar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 12px var(--space-2) calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.mobile-total-bar__count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.mobile-total-bar__total {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.mobile-total-bar__link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-blue-text);
+}
+
+/* --- Compatibility (inside the summary panel) --- */
+
+.compat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.compat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.compat__header h3 {
+  font-size: 14px;
+}
+
+.compat__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.compat-item__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.compat-item__title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.compat-item__message {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.compat__note,
+.compat__power {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.compat__power {
+  color: var(--color-text);
+}
+
+/* --- A problem flagged on a component row --- */
+
+.component-row--warning {
+  border-color: rgba(245, 166, 35, 0.55);
+}
+
+.component-row--incompatible {
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+.component-row__issue {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.component-row__issue--warning {
+  color: var(--color-warning);
+}
+
+.component-row__issue--incompatible {
+  color: var(--color-danger-text);
+}
+
+/* Long product names must wrap instead of pushing the page sideways */
+.component-row__name,
+.component-row__specs,
+.product-card__name {
+  overflow-wrap: anywhere;
+}

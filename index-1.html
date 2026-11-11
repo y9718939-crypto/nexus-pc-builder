@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0A0F">
+  <title>Nexus PC Builder — Build Your Dream PC</title>
+  <meta name="description" content="Configure a PC, check hardware compatibility, and see the total price in Algerian Dinar.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%230A0A0F'/%3E%3Ctext%20x='15'%20y='23'%20font-size='20'%20font-family='Arial,sans-serif'%20font-weight='700'%20text-anchor='middle'%20fill='%23F2F2F5'%3EN%3C/text%3E%3Ccircle%20cx='25.5'%20cy='24'%20r='2.5'%20fill='%232F7CF6'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Load order matters: base defines the variables everything
+       else uses, responsive loads last so it can override them -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="logo">NEXUS<span class="logo__dot">.</span></a>
+      <nav class="navbar__links" aria-label="Main navigation">
+        <a href="index.html" class="active" aria-current="page">Home</a>
+        <a href="builder.html">Builder</a>
+        <a href="prebuilt.html">Prebuilt</a>
+        <a href="about.html">About</a>
+      </nav>
+      <a href="builder.html" class="btn btn-primary">Start Building</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container">
+        <h1>Build Your Dream PC, <span class="text-accent">Priced in DZD</span></h1>
+        <p class="hero__subtitle">Pick every component with confidence. Nexus checks compatibility and totals your price in Algerian Dinar as you build.</p>
+        <div class="hero__actions">
+          <a href="builder.html" class="btn btn-primary btn-lg">Start Building</a>
+          <a href="prebuilt.html" class="btn btn-outline btn-lg">View Prebuilts</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Features ===== -->
+    <section class="features">
+      <div class="container features__grid">
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h2>Compatibility checking</h2>
+          <p>Socket, chipset and clearance checks before you buy.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="8"></circle>
+              <line x1="12" y1="7" x2="12" y2="17"></line>
+              <line x1="9" y1="9.5" x2="15" y2="9.5"></line>
+            </svg>
+          </div>
+          <h2>DZD pricing</h2>
+          <p>Every total shown in Algerian Dinar, clearly marked as demo pricing.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="11" height="11" rx="2"></rect>
+              <rect x="10" y="10" width="11" height="11" rx="2"></rect>
+            </svg>
+          </div>
+          <h2>Prebuilt configs</h2>
+          <p>Budget to workstation builds, ready to load and customize.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 3h12v18l-6-4-6 4V3z"></path>
+            </svg>
+          </div>
+          <h2>Save your build</h2>
+          <p>Your configuration stays saved right in your browser.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CTA banner ===== -->
+    <section class="container">
+      <div class="cta-banner">
+        <div>
+          <h2>Ready to build your rig?</h2>
+          <p>No sign-up needed — your build saves right in your browser.</p>
+        </div>
+        <a href="builder.html" class="btn btn-accent">Start Building</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="logo">NEXUS<span class="logo__dot">.</span></div>
+        <p>All prices shown are illustrative demo prices, not live Algerian market data.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <strong>Site</strong>
+        <a href="index.html">Home</a>
+        <a href="builder.html">Builder</a>
+        <a href="prebuilt.html">Prebuilt</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

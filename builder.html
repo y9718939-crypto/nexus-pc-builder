@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0A0F">
+  <title>PC Builder — Nexus PC Builder</title>
+  <meta name="description" content="Select your CPU, GPU, motherboard and more. Nexus checks compatibility and totals your price in DZD as you build.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%230A0A0F'/%3E%3Ctext%20x='15'%20y='23'%20font-size='20'%20font-family='Arial,sans-serif'%20font-weight='700'%20text-anchor='middle'%20fill='%23F2F2F5'%3EN%3C/text%3E%3Ccircle%20cx='25.5'%20cy='24'%20r='2.5'%20fill='%232F7CF6'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/builder.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="builder-page">
+
+  <!-- ===== Navbar ===== -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="logo">NEXUS<span class="logo__dot">.</span></a>
+      <nav class="navbar__links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="builder.html" class="active" aria-current="page">Builder</a>
+        <a href="prebuilt.html">Prebuilt</a>
+        <a href="about.html">About</a>
+      </nav>
+      <span class="navbar__spacer" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- ===== Page header ===== -->
+      <div class="builder-header">
+        <div>
+          <h1>Build Your PC</h1>
+          <p>Select each component and watch your total and compatibility update as you go.</p>
+        </div>
+        <button type="button" class="btn btn-outline" data-action="reset">Reset Build</button>
+      </div>
+
+      <div class="builder-layout">
+
+        <!-- Component rows are drawn here by js/modules/ui.js -->
+        <ul class="component-list" id="component-list" aria-label="PC components"></ul>
+
+        <!-- ===== Build summary (filled in by JavaScript) ===== -->
+        <aside class="summary-panel" id="build-summary" aria-label="Build summary">
+          <div>
+            <h2 class="summary-panel__title">Build Summary</h2>
+            <div class="summary-panel__count" id="summary-count" aria-live="polite">0 of 8 components selected</div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-items" id="summary-items"></div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <span class="summary-total__label">Total (demo prices)</span>
+            <span class="summary-total__value" id="summary-total" aria-live="polite">0 DZD</span>
+          </div>
+          <p class="summary-price-note" id="summary-price-note" hidden></p>
+          <p class="summary-missing" id="summary-missing"></p>
+
+          <div class="summary-divider"></div>
+
+          <!-- Results come from js/modules/compat.js -->
+          <section class="compat" aria-labelledby="compat-title">
+            <div class="compat__header">
+              <h3 id="compat-title">Compatibility</h3>
+              <span class="badge badge-neutral" id="compat-overall" aria-live="polite">Not checked yet</span>
+            </div>
+            <ul class="compat__list" id="compat-list"></ul>
+            <p class="compat__note" id="compat-waiting" hidden></p>
+            <p class="compat__power" id="compat-power" hidden></p>
+            <p class="compat__note">Storage isn't included in compatibility checks.</p>
+          </section>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-actions">
+            <button type="button" class="btn btn-primary" id="save-btn" disabled>Save Build</button>
+            <button type="button" class="btn btn-outline" id="load-btn" disabled>Load Saved</button>
+          </div>
+          <div class="summary-actions">
+            <button type="button" class="btn btn-outline" id="copy-btn" disabled>Copy Summary</button>
+            <button type="button" class="btn btn-outline" data-action="reset">Reset</button>
+          </div>
+          <p class="summary-status" id="build-status" role="status"></p>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="logo">NEXUS<span class="logo__dot">.</span></div>
+        <p>All prices shown are illustrative demo prices, not live Algerian market data.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <strong>Site</strong>
+        <a href="index.html">Home</a>
+        <a href="builder.html">Builder</a>
+        <a href="prebuilt.html">Prebuilt</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Compact total bar for tablets and phones (hidden on desktop) -->
+  <a class="mobile-total-bar" href="#build-summary" aria-label="View build summary">
+    <span>
+      <span class="mobile-total-bar__count" id="mobile-count">0/8 selected</span><br>
+      <span class="mobile-total-bar__total" id="mobile-total">0 DZD</span>
+    </span>
+    <span class="mobile-total-bar__link">View summary</span>
+  </a>
+
+  <!-- ===== Selection window (native <dialog>) ===== -->
+  <dialog class="modal" id="selection-modal" aria-labelledby="modal-title">
+    <div class="modal__header">
+      <div>
+        <h2 id="modal-title">Select a component</h2>
+        <p class="modal__note">Prices are demo prices in DZD, not live market prices.</p>
+      </div>
+      <button type="button" class="modal__close" id="modal-close" aria-label="Close window">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal__filters">
+      <div class="field field--search">
+        <label for="modal-search">Search</label>
+        <input type="search" id="modal-search" maxlength="60" placeholder="Name, brand or spec" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="modal-manufacturer">Manufacturer</label>
+        <select id="modal-manufacturer"></select>
+      </div>
+      <div class="field">
+        <label for="modal-sort">Sort by</label>
+        <select id="modal-sort">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="modal__count" id="modal-count" role="status"></p>
+
+    <div class="modal__body">
+      <ul class="product-grid" id="modal-products"></ul>
+      <div class="modal__empty" id="modal-empty" hidden>
+        <p>No products match your search.</p>
+        <button type="button" class="btn btn-outline btn-sm" id="modal-clear">Clear filters</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ===== Scripts =====
+       Order matters: data first, then the modules that use it, main.js last.
+       `defer` means "run after the page has loaded, in this order". -->
+  <script defer src="js/data/cpus.js"></script>
+  <script defer src="js/data/gpus.js"></script>
+  <script defer src="js/data/motherboards.js"></script>
+  <script defer src="js/data/ram.js"></script>
+  <script defer src="js/data/storage.js"></script>
+  <script defer src="js/data/psu.js"></script>
+  <script defer src="js/data/cases.js"></script>
+  <script defer src="js/data/coolers.js"></script>
+  <script defer src="js/data/prebuilts.js"></script>
+  <script defer src="js/modules/catalog.js"></script>
+  <script defer src="js/modules/priceCalculator.js"></script>
+  <script defer src="js/modules/compat.js"></script>
+  <script defer src="js/modules/state.js"></script>
+  <script defer src="js/modules/storageManager.js"></script>
+  <script defer src="js/modules/search.js"></script>
+  <script defer src="js/modules/ui.js"></script>
+  <script defer src="js/modules/modal.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

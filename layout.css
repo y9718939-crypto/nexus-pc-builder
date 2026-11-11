@@ -1,0 +1,97 @@
+/* ===========================================================
+   LAYOUT.CSS
+   Page-level structure: the sticky navbar, the footer, and the
+   spacing around major sections. Shared by every page.
+=========================================================== */
+
+/* --- Navbar --- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-text);
+}
+
+.logo__dot {
+  color: var(--color-blue);
+}
+
+.navbar__links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.navbar__links a.active {
+  color: var(--color-text);
+}
+
+/* Keeps the links centred on pages that have no button on the right
+   (the same width as the "Start Building" button on the other pages) */
+.navbar__spacer {
+  width: 142px;
+}
+
+/* --- Footer --- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-6) 0;
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.footer__brand p {
+  margin-top: var(--space-2);
+  max-width: 280px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 14px;
+}
+
+.footer__links strong {
+  font-size: 13px;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+/* --- Shared section spacing --- */
+.hero {
+  padding: var(--space-8) 0 var(--space-6);
+  text-align: center;
+}
+
+.features {
+  padding: var(--space-2) 0 var(--space-8);
+}

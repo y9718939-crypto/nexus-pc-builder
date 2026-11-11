@@ -1,0 +1,195 @@
+/* ===========================================================
+   MODAL.CSS
+   The "Select a component" window (a native <dialog>): header,
+   search/filter controls, and the grid of product cards.
+=========================================================== */
+
+.modal {
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  width: min(960px, calc(100% - 32px));
+  max-height: calc(100vh - 64px);
+  max-height: calc(100dvh - 64px);
+  overflow: hidden;
+}
+
+/* Only use flex layout while open, otherwise the closed dialog would show */
+.modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal::backdrop {
+  background: rgba(5, 5, 8, 0.72);
+}
+
+/* Stop the page behind the window from scrolling */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3) var(--space-2);
+}
+
+.modal__header h2 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.modal__note {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.modal__close {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.modal__close:hover {
+  border-color: var(--color-text-muted);
+}
+
+/* --- Search / filter / sort controls --- */
+.modal__filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-2);
+  padding: 0 var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  background: var(--color-surface-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 1px;
+}
+
+.modal__count {
+  padding: 12px var(--space-3) 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* --- Scrollable results area --- */
+.modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+}
+
+.product-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-2);
+}
+
+.product-grid[hidden] {
+  display: none;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-2);
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* A blue border marks the product that is currently chosen */
+.product-card--selected {
+  border-color: var(--color-blue);
+}
+
+/* Stand-in until real product photos are added */
+.product-card__image {
+  height: 88px;
+  margin-bottom: 6px;
+  display: grid;
+  place-items: center;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.product-card__name {
+  font-size: 16px;
+}
+
+.product-card__maker,
+.product-card__specs {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.product-card__specs {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.product-card__price {
+  margin-top: 6px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.product-card .btn {
+  margin-top: var(--space-1);
+  width: 100%;
+}
+
+/* --- No results --- */
+.modal__empty {
+  text-align: center;
+  padding: var(--space-6) var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.modal__empty p {
+  margin-bottom: var(--space-2);
+}

@@ -1,0 +1,112 @@
+/* ===========================================================
+   BASE.CSS
+   Design tokens (CSS variables), the browser reset, and global
+   typography. Every other stylesheet relies on the variables
+   defined here, so this file must load first.
+=========================================================== */
+
+:root {
+  /* --- Colors --- */
+  --color-bg: #0A0A0F;
+  --color-surface: #15151D;
+  --color-surface-alt: #1B1B26;
+  --color-border: #262631;
+  --color-border-dashed: #30303C;
+  --color-text: #F2F2F5;
+  --color-text-muted: #9A9AA8;
+
+  --color-blue: #2F7CF6;        /* links, outlines, highlighted words */
+  --color-blue-solid: #1E5FD1;  /* solid button fills — darker so white text stays readable */
+  --color-orange: #FF7A30;      /* secondary accent, main call-to-action */
+  --color-blue-text: #5B9BFF;   /* lighter blue for small text on dark surfaces */
+
+  --color-success: #22C55E;
+  --color-warning: #F5A623;
+  --color-danger: #EF4444;
+  --color-danger-text: #F87171; /* lighter red for small text on dark surfaces */
+
+  /* --- Typography --- */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* --- Spacing scale, based on an 8px grid --- */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+
+  /* --- Corner radii --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+/* --- Reset: makes padding/borders predictable on every element --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  margin: 0;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--color-text);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Reusable centered content wrapper, used on every page/section */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+/* Visible keyboard focus — never remove this, it's an accessibility must */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+/* Respect people who've asked their OS to reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

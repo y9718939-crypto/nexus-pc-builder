@@ -1,0 +1,160 @@
+/* ===========================================================
+   RESPONSIVE.CSS
+   Media queries only. This file loads LAST on every page so its
+   rules can override the desktop-first styles above it once the
+   screen gets narrower. We design "desktop down" here — tweak
+   this file if you'd rather work mobile-first.
+=========================================================== */
+
+/* ----- Tablets / small laptops ----- */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Stack the Builder page into one column; the summary panel
+     moves below the component list instead of sticking beside it */
+  .builder-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-panel {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  /* Show the compact total bar, and leave room so it never covers the footer */
+  .mobile-total-bar {
+    display: flex;
+  }
+
+  .builder-page .site-footer {
+    padding-bottom: 96px;
+  }
+}
+
+/* ----- Mobile phones ----- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-2);
+  }
+
+  /* Nav links drop to their own row under the logo + button */
+  .navbar__inner {
+    flex-wrap: wrap;
+    row-gap: var(--space-2);
+  }
+
+  .navbar__spacer {
+    display: none;
+  }
+
+  .navbar__links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero__subtitle {
+    font-size: 16px;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-4);
+  }
+
+  .footer__inner {
+    flex-direction: column;
+  }
+
+  /* Let the price wrap onto its own line instead of squeezing the row */
+  .component-row {
+    flex-wrap: wrap;
+  }
+
+  .component-row__price {
+    order: 3;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Buttons get their own full-width line under the price */
+  .component-row__actions {
+    order: 4;
+    width: 100%;
+  }
+
+  .component-row__actions .btn {
+    flex: 1;
+  }
+
+  /* The selection window fills the whole phone screen */
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100%;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .modal__filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .field--search {
+    grid-column: 1 / -1;
+  }
+
+  .modal__header,
+  .modal__body {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .modal__filters {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .modal__count {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+}
+
+/* ----- Small phones ----- */
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .btn-lg {
+    width: 100%;
+  }
+}
