@@ -1,0 +1,16 @@
+{
+  "name": "nexus-pc-builder-android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nexus PC Builder Android wrapper",
+  "scripts": {
+    "prepare:web": "node scripts/prepare-web.mjs"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3"
+  }
+}

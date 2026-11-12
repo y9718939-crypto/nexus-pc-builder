@@ -1,0 +1,8 @@
+{
+  "appId": "com.nexus.pc_builder",
+  "appName": "Nexus PC Builder",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
